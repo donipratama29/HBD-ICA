@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Rizka 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #333;
+      overflow: hidden;
+    }
+
+    #text {
+      font-size: 1.4rem;
+      max-width: 650px;
+      line-height: 1.7;
+      padding: 20px;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+    }
+
+    .love {
+      font-size: 42px;
+      cursor: pointer;
+      animation: pulse 1.2s infinite;
+      margin-top: 20px;
+      color: #ff4b8b;
+      user-select: none;
+    }
+
+    .hint {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 8px;
+      opacity: 0.8;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    .heart {
+      position: fixed;
+      color: #ff4b8b;
+      animation: fall linear forwards;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .final {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ff2b75;
+      border-right: 3px solid #ff2b75;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 4s steps(40, end), blink 0.7s step-end infinite alternate;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .fade-in {
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ✨ efek sparkle */
+    .sparkle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, white, transparent);
+      border-radius: 50%;
+      opacity: 0.9;
+      animation: sparkleAnim linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes sparkleAnim {
+      0% { transform: scale(0.5) translateY(0); opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: scale(0) translateY(30px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="text">
+    💻 POV: Seorang programmer ngucapin ulang tahun buat seseorang yang paling spesial 💖
+  </div>
+  <div class="love" id="loveBtn">❤</div>
+  <div class="hint">klik love untuk lanjut ya 💞</div>
+
+  <audio id="bgm" loop>
+    <source src="lagu-hbd.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const messages = [
+        "Hallooo Rizka sayang, mamihnya Zio 💖",
+        "Programmer-nya nggak jago ngomong, tapi kali ini aku bikin sesuatu yang spesial buat kamu 🥰",
+        "Karena hari ini... adalah hari ulang tahunmu yang ke-34 🎂",
+        "Cieee, makin cantik, makin dewasa, makin sabar, dan makin bikin aku jatuh cinta setiap hari 😍",
+        "Terima kasih ya, udah jadi istri yang luar biasa buat aku dan ibu yang penuh kasih buat Zio ❤",
+        "Kamu itu bukan cuma pendamping hidupku, tapi juga sumber semangatku, tempat aku pulang, dan alasanku buat terus berjuang 💪",
+        "Aku bersyukur banget bisa mengenal dan mencintai kamu, dari dulu sampai sekarang 💖",
+        "Masih inget nggak, waktu pertama kali kita ketemu? Aku masih gugup tapi bahagia banget lihat senyum kamu 😊",
+        "Setiap hari bareng kamu tuh rasanya kayak rumah, tempat paling nyaman buat pulang 🏠",
+        "Aku masih jatuh cinta sama kamu, bahkan setelah ribuan hari berlalu 💗",
+        "Kadang aku capek, tapi cukup lihat kamu dan Zio, langsung semangat lagi 💪",
+        "Aku bersyukur banget punya keluarga kecil yang penuh cinta ini 💞",
+        "Rizka, kamu bukan cuma istri, tapi juga sahabat, guru sabar, dan separuh jiwaku 💖",
+        "Terima kasih udah terus sabar sama aku, yang kadang keras kepala tapi sayangnya tulus 😅",
+        "Semoga nanti kita bisa ngerayain ulang tahun ini sambil lihat Zio tumbuh besar jadi anak yang hebat 🌟",
+        "Doaku cuma satu: semoga Allah terus jagain kamu, kasih kamu panjang umur dan hati yang selalu bahagia 🤲",
+        "Aku janji, selama aku bisa bernapas, aku bakal jagain kamu dan keluarga kecil kita 💕",
+        "Selamat ulang tahun, istriku tercinta Rizka Riansyah 🎉",
+        "Hari ini dunia terasa lebih hangat, karena ada kamu yang lahir di tanggal ini ☀",
+        "Kamu bukan cuma pelengkap hidupku, tapi kamu adalah hidupku itu sendiri 💞",
+        "Papih sama Zio sayang banget sama mamih ❤",
+        "Cinta kita nggak butuh kata-kata indah, karena tiap hari bersamamu sudah jadi doa dan kebahagiaan 💫",
+        "Dan... ada satu hal yang nggak akan pernah berubah:",
+        "Aku cinta kamu, Rizka. Dari dulu, sekarang, dan sampai akhir nanti 💘",
+        "💖 Doni ❤ Rizka 💖<br>Untuk selamanya 💕"
+      ];
+
+      const text = document.getElementById("text");
+      const loveBtn = document.getElementById("loveBtn");
+      const bgm = document.getElementById("bgm");
+      let index = 0;
+      let musicPlayed = false;
+
+      loveBtn.addEventListener("click", () => {
+        if (!musicPlayed) {
+          bgm.play().catch(() => alert("Klik lagi ya kalau musik belum jalan 💕"));
+          musicPlayed = true;
+        }
+
+        // efek hujan love kecil
+        for (let i = 0; i < 6; i++) {
+          const heart = document.createElement("div");
+          heart.textContent = "💖";
+          heart.classList.add("heart");
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.fontSize = Math.random() * 20 + 20 + "px";
+          heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 5000);
+        }
+
+        if (index < messages.length - 1) {
+          text.classList.add("hidden");
+          setTimeout(() => {
+            text.textContent = messages[index];
+            text.classList.remove("hidden");
+            index++;
+          }, 500);
+        } else {
+          // slide akhir spesial
+          text.classList.add("hidden");
+          setTimeout(() => {
+            text.innerHTML = `<div class="final">💖 Doni ❤ Rizka 💖</div>`;
+            text.classList.remove("hidden");
+
+            // efek fade-in baris kedua
+            setTimeout(() => {
+              const secondLine = document.createElement("div");
+              secondLine.classList.add("final", "fade-in");
+              secondLine.style.marginTop = "10px";
+              secondLine.style.fontSize = "1.8rem";
+              secondLine.textContent = "Untuk selamanya 💕";
+              text.appendChild(secondLine);
+            }, 1500);
+
+            loveBtn.style.display = "none";
+            document.querySelector(".hint").style.display = "none";
+
+            // hujan love besar di akhir
+            for (let i = 0; i < 50; i++) {
+              const heart = document.createElement("div");
+              heart.textContent = "💞";
+              heart.classList.add("heart");
+              heart.style.left = Math.random() * 100 + "vw";
+              heart.style.fontSize = Math.random() * 20 + 25 + "px";
+              heart.style.animationDuration = Math.random() * 4 + 2 + "s";
+              document.body.appendChild(heart);
+              setTimeout(() => heart.remove(), 6000);
+            }
+
+            // efek sparkle
+            for (let i = 0; i < 80; i++) {
+              const sparkle = document.createElement("div");
+              sparkle.classList.add("sparkle");
+              sparkle.style.left = Math.random() * 100 + "vw";
+              sparkle.style.top = Math.random() * 100 + "vh";
+              sparkle.style.animationDuration = Math.random() * 2 + 1 + "s";
+              sparkle.style.width = sparkle.style.height = Math.random() * 4 + 2 + "px";
+              document.body.appendChild(sparkle);
+              setTimeout(() => sparkle.remove(), 2500);
+            }
+          }, 500);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
